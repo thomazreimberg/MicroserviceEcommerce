@@ -19,33 +19,43 @@ namespace Catalog.API.Repositories
             return await _catalogContext.Products.Find(_ => true).ToListAsync();
         }
 
-        public Task<IEnumerable<Product>> GetById(string id)
+        public async Task<Product> GetById(string id)
         {
-            throw new NotImplementedException();
+            return await _catalogContext.Products.Find(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<IEnumerable<Product>> GetProductByCategory(string category)
+        public async Task<IEnumerable<Product>> GetProductByCategory(string category)
         {
-            throw new NotImplementedException();
+            FilterDefinition<Product> filter = Builders<Product>.Filter.Regex(x => x.Category, new MongoDB.Bson.BsonRegularExpression(category, "i"));
+
+            return await _catalogContext.Products.Find(filter).ToListAsync();
         }
 
-        public Task<IEnumerable<Product>> GetProductByName(string name)
+        public async Task<IEnumerable<Product>> GetProductByName(string name)
         {
-            throw new NotImplementedException();
+            FilterDefinition<Product> filter = Builders<Product>.Filter.ElemMatch(x => x.Name, name);
+
+            return await _catalogContext.Products.Find(filter).ToListAsync();
         }
 
-        public Task Create(Product product)
+        public async Task Create(Product product)
         {
-            throw new NotImplementedException();
+            await _catalogContext.Products.InsertOneAsync(product);
         }
 
-        public Task<bool> Delete(string id)
+        public async Task<bool> Delete(string id)
         {
-            throw new NotImplementedException();
+            FilterDefinition<Product> filter = Builders<Product>.Filter.Eq(x => x.Id, id);
+
+            DeleteResult deleteResult = await _catalogContext.Products.DeleteOneAsync(filter);
+
+            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
         }
-        public Task<bool> Update(Product product)
+        public async Task<bool> Update(Product product)
         {
-            throw new NotImplementedException();
+            var updateResult = await _catalogContext.Products.ReplaceOneAsync(filter: x => x.Id == product.Id, replacement: product);
+
+            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
         }
     }
 }
