@@ -1,5 +1,6 @@
 ﻿using Catalog.API.Entities;
 using Catalog.API.Repositories.Interfaces;
+using Catalog.API.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers
@@ -28,7 +29,8 @@ namespace Catalog.API.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("{id}")]
+        [ValidateIdLength("CatalogSettings:IdLength")]
         [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<Product>>> GetById(string id)
@@ -79,7 +81,8 @@ namespace Catalog.API.Controllers
             return CreatedAtRoute("GetProduct", new { id = product.Id });
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("{id}")]
+        [ValidateIdLength("CatalogSettings:IdLength")]
         [ProducesResponseType(typeof(IEnumerable<Product>), StatusCodes.Status200OK)]
         public async Task<ActionResult<bool>> Delete(string id)
         {
