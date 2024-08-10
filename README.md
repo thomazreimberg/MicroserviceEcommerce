@@ -8,4 +8,7 @@
 
 - docker ps
 ![image](https://github.com/user-attachments/assets/a363cf92-2fd7-4f74-8a30-e7b3d938a5af)
+
 ![image](https://github.com/user-attachments/assets/12a1ed25-833e-4656-a373-07288aff64e9)
+
+![image](https://github.com/user-attachments/assets/71e0b4c7-336d-43d6-ab26-5b50e341bf1d)
