@@ -7,7 +7,7 @@
 ### How to know which port the CatalogApi is running on?
 
 - docker ps
-![image](https://github.com/user-attachments/assets/2e64408f-24c5-4f80-8733-5a31148796a1)
+![image](https://github.com/user-attachments/assets/4ca4da89-5083-47ad-b90f-354b43940adc)
 
 ![image](https://github.com/user-attachments/assets/12a1ed25-833e-4656-a373-07288aff64e9)
 
