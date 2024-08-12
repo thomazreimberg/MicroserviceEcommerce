@@ -21,6 +21,7 @@ services:
 
   discountdb:
     image: postgres
+
   pgadmin:
     image: dpage/pgadmin4
 
@@ -33,4 +34,4 @@ services:
 volumes:
   mongo_data:
   postgres_data:
-  pdadmin_data:
+  pgadmin_data:
